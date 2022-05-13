@@ -1,64 +1,46 @@
 import './CSS/App.css';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import Countries from './Components/Countries';
 import AllCountriesButton from './Components/AllCountriesButton';
 import Button from './Components/Button';
-import React from 'react';
-class App extends React.Component {
-  
-constructor(props) {
-  super(props);
-   
-  this.state = {
-    items: [],
-    DataisLoaded: false
-    };
-}
+import Pagination from './Components/Pagination';
 
-componentDidMount() {
-  fetch("https://restcountries.com/v2/all?fields=name,region,area")
-    .then((res) => res.json())
-    .then((json) => {
-    this.setState({
-      items: json,
-      DataisLoaded: true
-    });
-  })
-}
+const App = () => {
+    const [countries, setCountries] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [countriesPerPage] = useState(40);
 
-render() {
-  const { DataisLoaded, items } = this.state;
-  if (!DataisLoaded) return
-    <div>
-    <h1> Pleses wait some time.... </h1> 
-    </div> ;
-   
-  return (
-    <div className='App'>
-      <header className='App-header'></header>
-      <main className='App-main'>
+    useEffect(() => {
+        const fetchCountries = async () => {
+            setLoading(true);
+            const res = await axios.get('https://restcountries.com/v2/all?fields=name,region,area');
+            setCountries(res.data);
+            setLoading(false);
+        }
+
+        fetchCountries();
+    }, []);
+
+    const indexOfLastCountry = currentPage * countriesPerPage;
+    const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+    const currentCountries = countries.slice(indexOfFirstCountry, indexOfLastCountry);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    return (
         <div className='container'>
-          <AllCountriesButton className='bt'></AllCountriesButton>
-          <div className='navigation'>
-            <Button buttonName='Smaller than Lithuania' class='btn bt'></Button>
-            <Button buttonName='All from Oceania'class='btn bt'></Button>
-            <Button class='btn btn-secondary bt' imgSrc= {require('./img/az.png')} alt = 'az'></Button>
-          </div>
-          <div className='list'>
-              {items.map((item) => ( 
-                <div className='row' key = { item.id }>
-                  <div className='item'>
-                    <h3 className='country-title'>{ item.name }</h3>
-                    <p className='country-info'>Region:&nbsp;{ item.region }</p>
-                    <p className='country-info'>Area:&nbsp;{ item.area } km&#178;</p>
-                  </div>
-                </div>
-                ))
-              }
-          </div>
+            <AllCountriesButton></AllCountriesButton>
+            <div className='navigation'>
+                <Button buttonName='Smaller than Lithuania' class='btn'></Button>
+                <Button buttonName='All from Oceania' class='btn'></Button>
+                <Button class='btn btn-secondary' imgSrc={require('./img/az.png')} alt='az'></Button>
+            </div>
+            <Countries countries={currentCountries} loading={loading}></Countries>
+            <Pagination countriesPerPage={countriesPerPage} totalCountries={countries.length} paginate={paginate}></Pagination>
         </div>
-      </main>
-    </div>
-  );
-}
-}
+    );
+};
 
 export default App;

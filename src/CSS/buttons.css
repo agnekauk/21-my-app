@@ -1,7 +1,7 @@
 .all-countries {
     width: 30vw;
-    min-width: 410px;
-    margin: calc(10px + 3vmin);
+    min-width: 500px;
+    margin: 3vmin calc(10px + 5vmin);
     padding: 1rem 1rem;
     font-size: 1.2rem;
     letter-spacing: .07rem;
@@ -28,10 +28,10 @@
 
 .btn-secondary {
     margin-left: auto;
-    margin-right: calc(10px + 3vmin);
     padding: .5rem 1rem;
     border-radius: 10rem;
     background-image: linear-gradient(to right, var(--secondary-color), #65673a);
+    transform: translateY(85%);
 }
 
 .az {
@@ -50,20 +50,18 @@ button:hover {
     background-color: var(--secondary-color);
 }
 
-a:hover {
-    background-color: var(--secondary-color);
-}
-
-
-
 @media (max-width: 500px) {
+    .all-countries  {
+        width: auto;
+    }
     .btn {
             padding-top: 8px;
             padding-bottom: 8px;
-        }
-    
-        .btn-secondary {
-            margin-left: calc(10px + 3vmin);
-            padding: 2px;
-        }
+    }
+    .btn-secondary {
+        margin-left: calc(10px + 3vmin);
+        margin-right: calc(10px + 3vmin);
+        padding: 2px;
+        transform: none;
+    }
 }

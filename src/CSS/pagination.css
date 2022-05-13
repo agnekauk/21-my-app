@@ -1,0 +1,33 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 0;
+    margin-left: calc(10px + 4vmin);
+    margin-right: calc(10px + 4vmin);
+    list-style-type: none;
+}
+
+.page-number {
+    background-image: linear-gradient(to right, var(--secondary-color), #65673a);
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.page-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bolder;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.page-number:hover {
+    background-image: none;
+    background-color: var(--secondary-color);
+}
