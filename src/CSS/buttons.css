@@ -2,34 +2,27 @@
     width: 30vw;
     min-width: 410px;
     margin: calc(10px + 3vmin);
-    padding: 1rem 0rem;
+    padding: 1rem 1rem;
     font-size: 1.2rem;
-    letter-spacing: .1rem;
+    letter-spacing: .07rem;
     color: #fff;
     text-decoration: none;
     text-transform: capitalize;
-    background-image: linear-gradient(to right, var(--primary-color), #284764);
-    border-radius: 10rem;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
+    background-image: linear-gradient(to right, var(--primary-color), #3c6b97);
+    border-radius: 1rem;
     border: none;
 }
 
 .btn {
     font-size: 0.9rem;
-    padding: .75rem 0.9rem;
-    line-height: 22px;
+    padding: 0.5rem 0.75rem;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-transform: capitalize;
     color: #fff;
     border: none;
-    border-radius: 10rem;
-    background-image: linear-gradient(to right, var(--primary-color), #284764);
+    border-radius: 1rem;
+    background-image: linear-gradient(to right, var(--primary-color), #3c6b97);
     cursor: pointer;
-    /* transition: all .3s; */
-    position: relative;
-    overflow: hidden;
 }
 
 
@@ -37,7 +30,8 @@
     margin-left: auto;
     margin-right: calc(10px + 3vmin);
     padding: .5rem 1rem;
-    background-image: linear-gradient(to right, var(--secondary-color), #434427);
+    border-radius: 10rem;
+    background-image: linear-gradient(to right, var(--secondary-color), #65673a);
 }
 
 .az {
