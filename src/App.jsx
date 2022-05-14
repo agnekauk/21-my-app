@@ -59,8 +59,8 @@ const App = () => {
         <div className='container'>
             <AllCountriesButton></AllCountriesButton>
             <div className='navigation'>
-                <Button buttonName='Smaller than Lithuania' class='btn' do={filterSmallerThanLT}></Button>
-                <Button buttonName='All from Oceania' class='btn' do={filterOceania}></Button>
+                <Button buttonName='Smaller than Lithuania' class='btn btn-primary' do={filterSmallerThanLT}></Button>
+                <Button buttonName='All from Oceania' class='btn btn-primary' do={filterOceania}></Button>
                 <Button class='btn btn-secondary' imgSrc={require('./img/az.png')} alt='az' do={sort}></Button>
             </div>
             <Countries countries={currentCountries} loading={loading}></Countries>

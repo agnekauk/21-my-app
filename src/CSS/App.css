@@ -59,13 +59,13 @@
 }
 
 .country-title {
-  font-size: calc(10px + 1vmin);
   margin: 9px 0 7px 0;
+  font-size: calc(10px + 1vmin);
 }
 
 .country-info{
-  font-size: calc(8px + 1vmin);
   margin: 1px 0 1px 0;
+  font-size: calc(8px + 1vmin);
 }
 
 @media (max-width: 500px) {
