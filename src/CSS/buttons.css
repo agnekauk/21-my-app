@@ -1,43 +1,37 @@
-.all-countries {
-    width: 30vw;
-    min-width: 410px;
-    margin: calc(10px + 3vmin);
-    padding: 1rem 0rem;
-    font-size: 1.2rem;
-    letter-spacing: .1rem;
-    color: #fff;
-    text-decoration: none;
+.btn{
     text-transform: capitalize;
-    background-image: linear-gradient(to right, var(--primary-color), #284764);
-    border-radius: 10rem;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
+    color: #fff;
     border: none;
+    border-radius: 5rem;
+    cursor: pointer;
 }
 
-.btn {
+
+.all-countries {
+    width: 30vw;
+    min-width: 500px;
+    margin: 3vmin calc(10px + 5vmin);
+    padding: 1rem 1rem;
+    font-size: 1.2rem;
+    letter-spacing: .07rem;
+    background-image: linear-gradient(to right, var(--primary-color), #3c6b97);
+
+}
+
+.btn-primary {
     font-size: 0.9rem;
-    padding: .75rem 0.9rem;
-    line-height: 22px;
+    padding: 0.5rem 0.75rem;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-transform: capitalize;
-    color: #fff;
-    border: none;
-    border-radius: 10rem;
-    background-image: linear-gradient(to right, var(--primary-color), #284764);
-    cursor: pointer;
-    /* transition: all .3s; */
-    position: relative;
-    overflow: hidden;
+    background-image: linear-gradient(to right, var(--primary-color), #3c6b97);
 }
 
 
 .btn-secondary {
     margin-left: auto;
-    margin-right: calc(10px + 3vmin);
     padding: .5rem 1rem;
-    background-image: linear-gradient(to right, var(--secondary-color), #434427);
+    border-radius: 10rem;
+    background-image: linear-gradient(to right, var(--secondary-color), #65673a);
+    transform: translateY(85%);
 }
 
 .az {
@@ -45,7 +39,7 @@
     margin-top: 4px;
 }
 
-button:hover {
+.btn:hover {
     background-image: none;
     background-color: var(--primary-color);
    
@@ -56,20 +50,18 @@ button:hover {
     background-color: var(--secondary-color);
 }
 
-a:hover {
-    background-color: var(--secondary-color);
-}
-
-
-
 @media (max-width: 500px) {
+    .all-countries  {
+        width: auto;
+    }
     .btn {
             padding-top: 8px;
             padding-bottom: 8px;
-        }
-    
-        .btn-secondary {
-            margin-left: calc(10px + 3vmin);
-            padding: 2px;
-        }
+    }
+    .btn-secondary {
+        margin-left: calc(10px + 3vmin);
+        margin-right: calc(10px + 3vmin);
+        padding: 2px;
+        transform: none;
+    }
 }

@@ -1,6 +1,12 @@
-# Getting Started with Create React App
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+Author: Agne
+Purpose: Educational, Assignment For Front-End Developer Intern Position
+
+## Packages To Be Installed
+
+npm install axios
+npm install react-paginate --save
 
 ## Available Scripts
 
