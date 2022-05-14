@@ -9,7 +9,7 @@
     text-decoration: none;
     text-transform: capitalize;
     background-image: linear-gradient(to right, var(--primary-color), #3c6b97);
-    border-radius: 1rem;
+    border-radius: 5rem;
     border: none;
 }
 
@@ -20,7 +20,7 @@
     text-transform: capitalize;
     color: #fff;
     border: none;
-    border-radius: 1rem;
+    border-radius: 5rem;
     background-image: linear-gradient(to right, var(--primary-color), #3c6b97);
     cursor: pointer;
 }

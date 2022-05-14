@@ -1,5 +1,5 @@
 function AllCountriesButton () {
-    return <button className="all-countries" href='http://localhost/3001'>List of the countries</button>
+    return <button className="all-countries" onClick={() => window.location.reload(false)}>List of the countries</button>
 }
 
 export default AllCountriesButton;

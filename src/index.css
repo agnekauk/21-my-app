@@ -4,7 +4,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url('./img/world_map.png');
-  background-repeat: space;
+  background-repeat:space;
   background-position: top center;
 }
 
