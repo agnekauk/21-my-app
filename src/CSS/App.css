@@ -1,6 +1,7 @@
 @import './variables.css';
 @import './buttons.css';
 @import './pagination.css';
+@import './loader.css';
 
 .App {
   text-align: center;
@@ -12,6 +13,14 @@
   align-items: flex-start;
   min-height: 50px;
   margin: calc(10px + 3vmin);
+}
+
+.title {
+    margin-left: calc(10px + 5vmin);
+    margin-right: calc(10px + 5vmin);
+    color: var(--text-color);
+    text-transform: capitalize;
+    cursor: pointer;
 }
 
 .container {
@@ -66,6 +75,12 @@
 .country-info{
   margin: 1px 0 1px 0;
   font-size: calc(8px + 1vmin);
+}
+
+@media (max-width: 385px) {
+  .title{
+    font-size: 1.6em;
+  }
 }
 
 @media (max-width: 500px) {
