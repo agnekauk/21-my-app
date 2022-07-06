@@ -13,6 +13,9 @@ const App = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [countriesPerPage] = useState(20);
+    const [pageNoLimit] = useState(5);
+    const [maxPageNoLimit, setMaxPageNoLimit] = useState(5);
+    const [minPageNoLimit, setMinPageNoLimit] = useState(0);
     
     useEffect(()=> {
         axios.get('https://restcountries.com/v2/all?fields=name,region,area')
@@ -20,8 +23,8 @@ const App = () => {
             dispachCountries(getFromServer(res.data));
         });
     }, []);
-
-     const sort = () => {
+    
+    const sort = () => {
         if (AtoZ) {
             dispachCountries(sortByNameAsc());
             setAtoZ(x => !x);
@@ -29,14 +32,15 @@ const App = () => {
             dispachCountries(sortByNameDesc());
             setAtoZ(x => !x);
         }      
-     }
+    }
     
-     const indexOfLastCountry = currentPage * countriesPerPage;
-     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
-     const currentCountries = countries.slice(indexOfFirstCountry,indexOfLastCountry);
-
-     const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+    const indexOfLastCountry = currentPage * countriesPerPage;
+    const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+    const currentCountries = countries.slice(indexOfFirstCountry,indexOfLastCountry);
+    
+    const totalPages = Math.ceil(countries.length/countriesPerPage);
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    
     return (
         <div className='container'>
             <h1 className='title' onClick={() => dispachCountries(showAll())}>List of the countries</h1>
@@ -50,6 +54,14 @@ const App = () => {
             countriesPerPage = {countriesPerPage} 
             totalCountries = {countries.length} 
             paginate = {paginate}
+            currentPage = {currentPage}
+            setCurrentPage = {setCurrentPage}
+            pageNoLimit = {pageNoLimit}
+            minPageNoLimit = {minPageNoLimit}
+            setMinPageNoLimit = {setMinPageNoLimit}
+            maxPageNoLimit = {maxPageNoLimit}
+            setMaxPageNoLimit = {setMaxPageNoLimit}
+            totalPages = {totalPages}
             ></Pagination> 
         </div>
     );
