@@ -1,9 +1,9 @@
 import './CSS/App.css';
 import axios from 'axios';
 import React, { useState, useEffect, useReducer } from 'react';
-// import ReactPaginate from 'react-paginate';
 import Countries from './Components/Countries';
 import Button from './Components/Button';
+import Pagination from './Components/Pagination';
 import countriesReducer from './Reducers/countriesReducer';
 import { getFromServer, sortByNameAsc, sortByNameDesc, filterSmallerLTU, filterFromOceania, showAll } from './Actions/countriesActions';
 
@@ -11,10 +11,9 @@ const App = () => {
     const [countries, dispachCountries] = useReducer(countriesReducer, []);
     const [AtoZ, setAtoZ] = useState(true);
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [countriesPerPage] = useState(20);
     
-    // const [currentPage, setCurrentPage] = useState(0);
-    // const [countriesPerPage] = useState(10);
-
     useEffect(()=> {
         axios.get('https://restcountries.com/v2/all?fields=name,region,area')
         .then(res => {
@@ -29,20 +28,14 @@ const App = () => {
         } else {
             dispachCountries(sortByNameDesc());
             setAtoZ(x => !x);
-        }
-        
+        }      
      }
+    
+     const indexOfLastCountry = currentPage * countriesPerPage;
+     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+     const currentCountries = countries.slice(indexOfFirstCountry,indexOfLastCountry);
 
-    // function handlePageClick({ selected:selectedPage}) {
-    //     setCurrentPage(selectedPage);
-    // }
-
-    // const offset= currentPage * countriesPerPage;
-
-    // const currentCountries = countries
-    //     .slice(offset, offset+countriesPerPage);
-
-    // const pageCount = Math.ceil(countries.length/countriesPerPage);
+     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <div className='container'>
@@ -52,19 +45,12 @@ const App = () => {
                 <Button buttonName='All from Oceania' class='btn btn-primary' do={() => dispachCountries(filterFromOceania())}></Button>
                 <Button class='btn btn-secondary' imgSrc={require('./img/az.png')} alt='az' do={sort}></Button>
             </div>
-            <Countries countries={countries}></Countries> 
-            {/* buvo currentCountries */}
-            {/* <ReactPaginate
-                previousLabel={'Previous'}
-                nextLabel = {'Next'}
-                pageCount = {pageCount}
-                onPageChange = {handlePageClick}
-                containerClassName={'pagination'}
-                previousLinkClassName={'pagination__link'}
-                nextLinkClassName = {'pagination__link'}
-                disabledClassName = {'pagination__link--disabled'}
-                activeClassName = {'pagination__link--active'}>
-                </ReactPaginate> */}
+            <Countries countries={currentCountries}></Countries>
+            <Pagination 
+            countriesPerPage = {countriesPerPage} 
+            totalCountries = {countries.length} 
+            paginate = {paginate}
+            ></Pagination> 
         </div>
     );
 };
