@@ -16,7 +16,8 @@ const Countries = ({countries, loading}) => {
             </div>)
           : null) : <Loader/>}
       </div>
-    </>)
+    </>
+    )
 };
 
 export default Countries;
