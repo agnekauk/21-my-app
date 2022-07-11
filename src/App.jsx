@@ -20,6 +20,7 @@ const App = () => {
     const [pageNumberLimit] = useState(5);
     const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
     const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
+
     
     useEffect(()=> {
         axios.get('https://restcountries.com/v2/all?fields=name,region,area')
@@ -36,6 +37,8 @@ const App = () => {
         } 
         if (filter === true) {
             setCurrentPage(1);
+            setMinPageNumberLimit(0);
+            setMaxPageNumberLimit(5);
             if (filterSmallerLTU === true){
                 computedCountries = countries.filter(c => c.area < 65300);
             } 
@@ -48,7 +51,7 @@ const App = () => {
 
     }, [countries, filter, filterFromOceania, filterSmallerLTU]);
     
-    
+  
     const sort = () => {
         if (AtoZ) {
             dispachCountries(sortByNameAsc());
@@ -60,12 +63,14 @@ const App = () => {
     };
     
     const filterLTU = () => {
+        pageNumbers = [];
         setFilter(true);
         setFilterFromOceania(false)
         setFilterSmallerLTU(true);
     };
     
     const filterOceania = () => {
+        pageNumbers = [];
         setFilter(true);
         setFilterSmallerLTU(false);
         setFilterFromOceania(true);
@@ -76,6 +81,12 @@ const App = () => {
         setFilter(false);
         dispachCountries(showAll());
     }
+
+    let pageNumbers = [];
+
+    for(let i=1; i<=Math.ceil(countriesData.length/countriesPerPage); i++){
+       pageNumbers.push(i);
+    };
     
     const indexOfLastCountry = currentPage * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
@@ -83,6 +94,7 @@ const App = () => {
     const currentcountries = countriesData.slice(indexOfFirstCountry,indexOfLastCountry);
     
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   
     return (
         <div className='container'>
@@ -94,8 +106,7 @@ const App = () => {
             </div>
             <Countries countries={currentcountries}></Countries>
             <Pagination 
-            countriesPerPage = {countriesPerPage} 
-            totalCountries = {countriesData.length} 
+            pageNumbers = {pageNumbers} 
             paginate = {paginate}
             currentPage = {currentPage}
             setCurrentPage = {setCurrentPage}

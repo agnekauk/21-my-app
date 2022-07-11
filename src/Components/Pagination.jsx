@@ -1,8 +1,7 @@
 import React from "react";
 
 const Pagination = ({
-    countriesPerPage, 
-    totalCountries, 
+    pageNumbers, 
     paginate, 
     currentPage,
     setCurrentPage, 
@@ -13,21 +12,16 @@ const Pagination = ({
     setMaxPageNumberLimit,
     totalPages}) => {
 
-    const pageNumbers = [];
-
-    for(let i=1; i<=Math.ceil(totalCountries/countriesPerPage); i++){
-        pageNumbers.push(i);
-    };
-
     const renderPageNumbers = pageNumbers.map((number) => {
-        if(number<maxPageNumberLimit+1 && number> minPageNumberLimit){
+        if((number<maxPageNumberLimit+1 && number> minPageNumberLimit)){
             return (
                     <li key = {number} id = {number} onClick = {()=> paginate(number)} 
                     className={currentPage === number ? "active" : null}>
                     {number}
                     </li>
             )
-        } else { return null};
+        } else { 
+            return null};
     });
 
     const handleNextButton = () => {
