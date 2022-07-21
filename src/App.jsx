@@ -10,7 +10,7 @@ import { useMemo } from 'react';
 
 const App = () => {
     const [countries, dispachCountries] = useReducer(countriesReducer, []);
-    const [AtoZ, setAtoZ] = useState(true);
+    const [fromAtoZ, setfromAtoZ] = useState(true);
     const [filter, setFilter] = useState(false);
     const [filterSmallerLTU, setFilterSmallerLTU] = useState(false);
     const [filterFromOceania, setFilterFromOceania] = useState(false);
@@ -53,12 +53,12 @@ const App = () => {
     
   
     const sort = () => {
-        if (AtoZ) {
+        if (fromAtoZ) {
             dispachCountries(sortByNameAsc());
-            setAtoZ(x => !x);
+            setfromAtoZ(x => !x);
         } else {
             dispachCountries(sortByNameDesc());
-            setAtoZ(x => !x);
+            setfromAtoZ(x => !x);
         }      
     };
     
